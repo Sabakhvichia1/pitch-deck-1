@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
+/* Light theme variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc; /* Soft light gray */
+  --foreground: #111827; /* Deep gray-black */
+  --accent-gradient: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6); /* Blue → Purple → Pink */
+  --glass: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(0, 0, 0, 0.05);
 }
 
+/* ✨ Theme tokens for Tailwind (if used with plugin) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-glass: var(--glass);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* 🌙 Dark mode override */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f9fafb;
+    --glass: rgba(0, 0, 0, 0.4);
+    --border-color: rgba(255, 255, 255, 0.05);
   }
 }
 
-body {
+/* 🧁 Apply global styles */
+html, body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* 🎨 Utility class suggestion (if using regular CSS) */
+.glassy-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: var(--foreground);
+}
+
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
